@@ -63,6 +63,8 @@ const ExerciseDetail = () => {
       />
       <SimilarExercises
         targetMuscleExercises={targetMuscleExercises}
+        targetMuscleName={exerciseDetail?.target}
+        equipmentName={exerciseDetail?.equipment}
         equipmentExercises={equipmentExercises}
       />
     </Box>

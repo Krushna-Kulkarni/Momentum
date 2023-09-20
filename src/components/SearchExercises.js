@@ -63,7 +63,7 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
           height="76px"
           value={search}
           onChange={(e) => setSearch(e.target.value.toLowerCase())}
-          placeholder="Search Exercises"
+          placeholder="Search Exercises, Target Muscle Groups or Equipments..."
           type="text"
         />
         <Button

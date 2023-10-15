@@ -3,17 +3,11 @@ import { Box, Pagination, Stack } from "@mui/material";
 import { Typography } from "@mui/material";
 import ExerciseCard from "./ExerciseCard";
 import fetchData, { exerciseOptions } from "../utils/fetchData";
+import Loader from "./Loader";
 
 const Exercises = ({ exercises, setExercises, bodyPart }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [exercisesPerPage] = useState(6);
-
-  const indexOfLastExercise = currentPage * exercisesPerPage;
-  const indexOfFirstExercise = indexOfLastExercise - exercisesPerPage;
-  const currentExercises = exercises?.slice(
-    indexOfFirstExercise,
-    indexOfLastExercise
-  );
 
   useEffect(() => {
     const fetchExercisesData = async () => {
@@ -37,6 +31,12 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
     fetchExercisesData();
   }, [setExercises, bodyPart]);
 
+  const indexOfLastExercise = currentPage * exercisesPerPage;
+  const indexOfFirstExercise = indexOfLastExercise - exercisesPerPage;
+  const currentExercises = exercises.slice(
+    indexOfFirstExercise,
+    indexOfLastExercise
+  );
   const paginate = (e, value) => {
     setCurrentPage(value);
     window.scrollTo({
@@ -44,6 +44,7 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
       behavior: "smooth",
     });
   };
+  if (!currentExercises.length) return <Loader />;
 
   return (
     <Box
